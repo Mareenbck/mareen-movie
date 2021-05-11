@@ -1,0 +1,10 @@
+// Import page-specific CSS files here.
+@import "home";
+@import "new";
+@import "new_bookmark";
+@import "show";
+
+body {
+  background-color: $gray;
+  position: relative;
+}
