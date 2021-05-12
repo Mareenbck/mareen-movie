@@ -9,7 +9,8 @@
     <%= simple_form_for(@list) do |f| %>
       <%= f.input :name, placeholder: 'NAME'%>
       <%= f.input :name, placeholder: "TAGS" %>
-      <%= f.input :name, placeholder: 'IMAGES' %>
+      <%= f.input :cover, as: :file, placeholder: 'IMAGES' %>
+      <%#= f.input :name, placeholder: 'IMAGES' %>
       <%= f.button :submit, "CREATE" %>
     <% end %>
   </div>

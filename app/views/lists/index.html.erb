@@ -11,13 +11,30 @@
   <div class="lists">
     <h1>My Lists</h1>
     <div class="lists-card">
-      <% @lists.each_with_index do |list, index| %>
-        <div class="card-odd">
-          <%= index %>
-          <%= link_to list.name, list_path(list) %>
-        </div>
+      <% @lists.each do |list| %>
+        <% if list.cover.attached? %>
+          <div class="card-odd" style="background-image:linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.48)),url('<%= cl_image_path list.cover.key, crop: :fill, height: 180, width: 140 %>')">
+            <%= link_to list_path(list), class: "link" do %>
+              <%= list.name %>
+              <%= link_to "+",  root_path, class: "delete" %>
+
+              <!-- <a class="delete" href="/">+</a> -->
+            <% end %>
+          </div>
+        <% else %>
+          <div class="card-odd" style="background-image:linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.48)),url(<%= randomized_background_image %>)">
+            <%= link_to list_path(list), class: "link" do %>
+              <%= list.name %>
+              <%= link_to "+", list_path(list), method: :delete,
+                                  data: { confirm: "Are you sure?" },
+                                  class: "delete"%>
+              <!-- <a class="delete" href="/">+</a> -->
+            <% end %>
+          </div>
+        <% end %>
         <br>
       <% end %>
+
     </div>
   </div>
 </div>
